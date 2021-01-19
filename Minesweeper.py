@@ -164,6 +164,8 @@ def drawBombs(screen, grid, limX, Tile_BOMB, delay=10):
     BOMB.fill(Colours.MAHOGANY)
     Tile_BOMB.blit(BOMB, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
     bombList = []
+    pygame.mixer.music.load("data/explosion.wav")
+    pygame.mixer.music.play()
     for i in range(limX):
         for Tile in grid[i]:
             if Tile.isBomb and not Tile.isClicked and Tile.state != 'WARN':
@@ -483,6 +485,8 @@ def game(res, screen, bomb_count, debug=False):
 
             # утилиты
             if bomb_count_approx == 0:  # достигнута победа
+                pygame.mixer.music.load("data/cheer.wav")
+                pygame.mixer.music.play()
                 GameOver = True
 
             if DEBUGGING_MODE:  # обновлять каждый раз счет
